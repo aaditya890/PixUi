@@ -1,3 +1,10 @@
 import { Routes } from '@angular/router';
-
-export const routes: Routes = [];
+import { authGuard } from './guards/auth.guard';
+export const routes: Routes = [
+    {
+        path:'admin',
+        loadComponent: ()=> import('../app/admin-pannel/admin-pannel.component').then((m) => m.AdminPannelComponent),
+        canActivate:[authGuard]
+        },
+      
+];

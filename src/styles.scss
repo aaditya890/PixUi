@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+
+// Import Angular Material theming utilities
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+// Define custom palettes
+
+$PixUi-primary: mat.define-palette(mat.$teal-palette, 500); // Set primary as a dark shade
+$PixUi-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$PixUi-warn: mat.define-palette(mat.$grey-palette,800);
+
+// Create a custom theme
+$PixUi-theme: mat.define-light-theme((
+  color: (
+    primary: $PixUi-primary,
+    accent: $PixUi-accent,
+    warn: $PixUi-warn,
+),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+// Include all component themes
+@include mat.all-component-themes($PixUi-theme);
+
+// Global styles
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family:sans-serif; // Match body background with theme
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+html, body { height: 100%; }
+*, ::before, ::after {
+  border-color: black;
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

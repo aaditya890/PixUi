@@ -1,0 +1,29 @@
+<div class="overflow-x-auto">
+    <h2 class="text-2xl font-bold text-gray-700 mb-6">Admin Panel</h2>
+    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow">
+      <thead>
+        <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+          <th class="py-3 px-6 text-left">Name</th>
+          <th class="py-3 px-6 text-left">Phone</th>
+          <th class="py-3 px-6 text-left">Category</th>
+          <th class="py-3 px-6 text-left">Created At</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-600 text-sm font-light">
+        @for (customer of customers; track $index) {
+            <tr  class="border-b border-gray-200 hover:bg-gray-100">
+                <td class="py-3 px-6 text-left">{{ customer.name }}</td>
+                <td class="py-3 px-6 text-left">{{ customer.phone }}</td>
+                <td class="py-3 px-6 text-left">{{ customer.category }}</td>
+                <td class="py-3 px-6 text-left">{{ customer.created_at  }}</td>
+              </tr>
+        }
+      </tbody>
+    </table>
+    @if (customers.length === 0) {
+        <div class="mt-4 text-gray-500 text-center">
+            No data available.
+          </div>
+    }
+  </div>
+  
