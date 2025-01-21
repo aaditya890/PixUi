@@ -11,14 +11,19 @@ import { WebService } from '../service/web.service';
 export class AdminPannelComponent {
   customers: any[] = [];
 
-  constructor(private webService: WebService) {}
+  constructor(private webService: WebService, private authService: AuthService) { }
 
   async ngOnInit(): Promise<void> {
     try {
       // Fetch customer data from the WebService
       const data = await this.webService.getCustomers();
       if (data) {
-        this.customers = data;
+        // Format the `date_time` field for each customer
+        this.customers = data.map((customer) => ({
+          ...customer,
+          formattedDate: this.formatDate(customer.date_time), // Format the date
+
+        }));
       } else {
         console.error('Failed to fetch customers');
       }
@@ -26,5 +31,21 @@ export class AdminPannelComponent {
       console.error('Error fetching customers:', error);
     }
   }
+
+  // Format date to DD/MM/YYYY
+  private formatDate(dateTime: string): string {
+    const date = new Date(dateTime);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.authService.clearAdminLoginState();
+    window.location.reload()
+  }
+
 }
 

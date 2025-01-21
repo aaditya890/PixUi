@@ -13,7 +13,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import Aos from 'aos';
 import { DialogEnquiryComponent } from './dialog-enquiry/dialog-enquiry.component';
 import { WebService } from './service/web.service';
-import { RouterOutlet } from '@angular/router';
+import { Route, Router, RouterOutlet } from '@angular/router';
 import { AuthService } from './service/auth.service';
 import { AdminPannelComponent } from './admin-pannel/admin-pannel.component';
 @Component({
@@ -33,7 +33,9 @@ import { AdminPannelComponent } from './admin-pannel/admin-pannel.component';
 })
 export class AppComponent implements OnInit {
   formBuilder = inject(FormBuilder)
+  router = inject(Router)
   getInTouchForm!: FormGroup;
+  isAdminPage: boolean = false;
   @ViewChild('bottomSection') bottomSection!: ElementRef;
   formSubmittedSuccessfully: boolean = false;
   adminAccess:boolean = false;
@@ -66,7 +68,7 @@ export class AppComponent implements OnInit {
   currentIndex = 0; // Track the position in the text
   isPaused = false;
 
-  constructor(private dialog: MatDialog, private webService: WebService,private authService:AuthService) { }
+  constructor(private dialog: MatDialog, private webService: WebService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getInTouchForm = this.formBuilder.group({
@@ -76,6 +78,14 @@ export class AppComponent implements OnInit {
     });
     this.startTyping();
     
+  }
+
+  enquiryByWhatsapp(): void {
+    const phoneNumber = "+916267363477";
+    const message = `Hi! I’m looking into your services on the Pixui Web Service Platform and would love to know more about your pricing and packages.Thanks a lot!`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    window.open(whatsappUrl, "_blank");
   }
 
   OnGetInTouchFormSubmit(clintData: any) {
@@ -119,8 +129,6 @@ export class AppComponent implements OnInit {
     };
 
     requestAnimationFrame(animation); // Start scrolling animation
-
-
   }
 
   ngAfterViewInit(): void {
@@ -178,24 +186,27 @@ export class AppComponent implements OnInit {
     });
   }
 
-  showAdminAccessForm(){
-    this.adminAccess = true;
+  showAdminAccessForm() {
+    if(this.authService.checkAdminLoginState()){
+      this.router.navigate(['/admin']);
+      this.isAdminPage = true;
+    }else{
+      this.adminAccess = true;
+    }
   }
 
   onAdminLogin(formValue: any): void {
-    if (formValue.adminId === 'aaditya#90') { // Replace 'admin123' with your actual admin ID logic
+    if (formValue.adminId === 'pixui@#admin90') { // Replace with your actual admin ID
       this.authService.loginAsAdmin();
-      // this.router.navigate(['/admin']); // Navigate to the admin panel
+      this.authService.saveAdminLoginState(); // Save login state in localStorage
+      this.adminAccess = false;
     } else {
       alert('Invalid Admin ID');
     }
   }
+
   get isAdmin(): boolean {
     return this.authService.isAdmin();
-  }
-
-  login(): void {
-    this.authService.loginAsAdmin();
   }
 
   logout(): void {

@@ -36,20 +36,36 @@ export class AuthService {
     }
   }
   
+ // Log in as admin
+ loginAsAdmin(): void {
+  this.adminLoggedIn = true;
+  this.router.navigate(['/admin']);
+}
 
-  // Log in as admin
-  loginAsAdmin(): void {
-    this.adminLoggedIn = true;
-    this.router.navigate(['/admin']);
-  }
+// Log out admin
+logout(): void {
+  this.adminLoggedIn = false;
+  this.clearAdminLoginState(); // Clear login state from localStorage
+  this.router.navigate(['/']);
+}
 
-  // Log out admin
-  logout(): void {
-    this.adminLoggedIn = false;
-  }
+// Check if admin is logged in
+isAdmin(): boolean {
+  return this.adminLoggedIn;
+}
 
-  // Check if admin is logged in
-  isAdmin(): boolean {
-    return this.adminLoggedIn;
-  }
+// Save admin login state to localStorage
+saveAdminLoginState(): void {
+  localStorage.setItem('adminLoggedIn', 'true');
+}
+
+// Check admin login state from localStorage
+checkAdminLoginState(): boolean {
+  return localStorage.getItem('adminLoggedIn') === 'true';
+}
+
+// Clear admin login state from localStorage
+clearAdminLoginState(): void {
+  localStorage.removeItem('adminLoggedIn');
+}
 }

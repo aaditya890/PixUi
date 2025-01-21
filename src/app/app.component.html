@@ -1,16 +1,25 @@
 <!-- Always Visible Sticky Go to Top Button with Error Icon and High z-index -->
-  @if (!isAdmin ) {
+  @if (!isAdmin && !isAdminPage) {
     <button (click)="scrollToTop()"
   class="fixed bottom-9 right-8 bg-teal-500 text-white p-2 rounded-full shadow-lg hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50 z-[9999] cursor-pointer transition-all duration-300">
+<!-- SVG Error Icon -->
+<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24"
+stroke="currentColor">
+<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"></circle>
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8l-4 4m4-4l4 4m-4-4v8" />
+</svg>
 
-  <!-- SVG Error Icon -->
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24"
-    stroke="currentColor">
-    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"></circle>
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8l-4 4m4-4l4 4m-4-4v8" />
+</button>
+<button (click)="enquiryByWhatsapp()"
+  class="fixed bottom-9 left-4 bg-teal-500 text-white p-[0.55rem] rounded-full shadow-lg hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50 z-[9999] cursor-pointer transition-all duration-300">
+
+  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0,0,256,256"
+  style="fill:#FFFFFF;">
+  <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M25,2c-12.682,0 -23,10.318 -23,23c0,3.96 1.023,7.854 2.963,11.29l-2.926,10.44c-0.096,0.343 -0.003,0.711 0.245,0.966c0.191,0.197 0.451,0.304 0.718,0.304c0.08,0 0.161,-0.01 0.24,-0.029l10.896,-2.699c3.327,1.786 7.074,2.728 10.864,2.728c12.682,0 23,-10.318 23,-23c0,-12.682 -10.318,-23 -23,-23zM36.57,33.116c-0.492,1.362 -2.852,2.605 -3.986,2.772c-1.018,0.149 -2.306,0.213 -3.72,-0.231c-0.857,-0.27 -1.957,-0.628 -3.366,-1.229c-5.923,-2.526 -9.791,-8.415 -10.087,-8.804c-0.295,-0.389 -2.411,-3.161 -2.411,-6.03c0,-2.869 1.525,-4.28 2.067,-4.864c0.542,-0.584 1.181,-0.73 1.575,-0.73c0.394,0 0.787,0.005 1.132,0.021c0.363,0.018 0.85,-0.137 1.329,1.001c0.492,1.168 1.673,4.037 1.819,4.33c0.148,0.292 0.246,0.633 0.05,1.022c-0.196,0.389 -0.294,0.632 -0.59,0.973c-0.296,0.341 -0.62,0.76 -0.886,1.022c-0.296,0.291 -0.603,0.606 -0.259,1.19c0.344,0.584 1.529,2.493 3.285,4.039c2.255,1.986 4.158,2.602 4.748,2.894c0.59,0.292 0.935,0.243 1.279,-0.146c0.344,-0.39 1.476,-1.703 1.869,-2.286c0.393,-0.583 0.787,-0.487 1.329,-0.292c0.542,0.194 3.445,1.604 4.035,1.896c0.59,0.292 0.984,0.438 1.132,0.681c0.148,0.242 0.148,1.41 -0.344,2.771z"></path></g></g>
   </svg>
 
 </button>
+
 
 <div class="bg-[#DFFCE9]">
   <div id="home" class="bg-gradient-to-b from-[#e5f8ec] to-[#DFFCE9]">
@@ -206,11 +215,13 @@
         <!-- Basic Plan -->
         <div class="flex flex-col items-center p-8 bg-white text-gray-900 rounded-lg border border-gray-200 shadow-lg"
           data-aos="fade-right" data-aos-delay="100">
-          <h3 class="text-3xl font-bold flex gap-2"> <svg class="w-10 h-10 text-gray-500"
+          <h3 class="text-3xl font-bold flex gap-2">
+             <!-- <svg class="w-10 h-10 text-gray-500"
               xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
               <path
                 d="M9.049 2.927C9.32 2.15 10.68 2.15 10.951 2.927l1.148 3.53h3.71c.86 0 1.217 1.1.588 1.657l-2.998 2.304 1.148 3.53c.268.777-.655 1.42-1.35.967l-2.998-2.304-2.998 2.304c-.695.453-1.618-.19-1.35-.967l1.148-3.53-2.998-2.304c-.63-.558-.272-1.657.588-1.657h3.71l1.148-3.53z" />
-            </svg>
+            </svg> -->
+            <img class="w-10 h-10 relative bottom-1" src=".././assets/basic (1).png" alt="">
             Basic</h3>
           <p class="mt-4 text-6xl font-extrabold">₹9,999</p>
           <ul class="mt-6 space-y-4 text-left">
@@ -243,12 +254,12 @@
         <div class="flex flex-col items-center p-8 bg-teal-500 text-white rounded-lg border border-teal-400 shadow-xl"
           data-aos="fade-up" data-aos-delay="200">
           <h3 class="text-3xl font-bold flex gap-2">
-            <svg class="w-6 h-6 text-yellow-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+            <!-- <svg class="w-6 h-6 text-yellow-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
               viewBox="0 0 24 24">
               <path d="M12 2l7 7-7 13-7-13 7-7zm-5 7h10l-5 9-5-9z" />
-            </svg>
+            </svg> -->
 
-
+            <img class="w-10 h-10 relative bottom-2" src=".././assets/pri.png" alt="">
             Premium
           </h3>
           <p class="mt-4 text-6xl font-extrabold">₹35,000</p>
@@ -288,7 +299,9 @@
         <!-- Platinum Plan -->
         <div class="flex flex-col items-center p-8 bg-white text-gray-900 rounded-lg border border-gray-200 shadow-lg"
           data-aos="fade-left" data-aos-delay="300">
-          <h3 class="text-3xl font-bold flex items-center">Platinum <span class="ml-2 text-yellow-500">👑</span></h3>
+          <h3 class="text-3xl font-bold flex items-center">
+            <img class="w-10 h-10" src=".././assets/platinum.png" alt="">
+            Platinum</h3>
           <p class="mt-4 text-6xl font-extrabold">₹45,000</p>
           <ul class="mt-6 space-y-3 text-left">
             <li class="flex gap-2"><svg class="w-6 h-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -640,11 +653,15 @@
       <a href="tel:+916267363477" class="text-blue-700 hover:underline">+91-6267363477</a>
       <a href="mailto:pixui.service&#64;gmail.com" class="text-blue-700 hover:underline">pixui.service&#64;gmail.com</a>
     </p>
+    <p class="text-gray-700 text-center mb-6 flex justify-center gap-3">
+      <a href="mailto:pixui.service&#64;gmail.com" class="text-blue-700 hover:underline">+91-6261991735</a>
+      <a href="tel:+916267363477" class="text-blue-700 hover:underline">+91-6263567300</a>
+    </p>
     <p class="text-gray-600 mt-6">© 2025 PixUi Web Service. All Rights Reserved.</p>
   </div>
   </footer>
   }
-  @if (adminAccess && !isAdmin) {
+  @if (adminAccess && !isAdmin && !isAdminPage) {
     <form action="#" (ngSubmit)="onAdminLogin(adminIdForm.value)" #adminIdForm="ngForm" class="w-full max-w-sm mx-auto p-6 bg-white rounded-lg shadow-md">
       <h2 class="text-center text-2xl font-semibold text-gray-700 mb-4">Admin Login</h2>
     
@@ -669,7 +686,10 @@
     </form>
     
   }
-  @if (isAdmin) {
+  @if (isAdmin && !isAdminPage) {
+    <app-admin-pannel></app-admin-pannel>
+  }
+  @if (isAdminPage) {
     <app-admin-pannel></app-admin-pannel>
   }
 
