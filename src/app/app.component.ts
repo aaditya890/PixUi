@@ -1,6 +1,6 @@
-import { Component,  OnInit,  OnDestroy,  AfterViewInit } from "@angular/core"
+import { Component, OnInit, OnDestroy, AfterViewInit } from "@angular/core"
 import { CommonModule } from "@angular/common"
-import {  FormBuilder,  FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
 
 interface Service {
   id: number
@@ -179,7 +179,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     },
   ]
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.initContactForm()
@@ -251,7 +251,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   sendWhatsAppMessage(formData: any): void {
-    const phoneNumber = "+916267363477"
+    const phoneNumber = "+916261991735"
     const message = `
 Hii PixUi !
 
